@@ -1,0 +1,38 @@
+AWS Infrastructure
+
+VPC and Networking:
+
+Single public VPC with default CIDR range
+One public subnet with EC2 instances, EBS volumes and RDS database
+No private subnets, NAT Gateways, route tables etc. setup
+
+Compute Resources:
+
+Single m5.large EC2 instance for Jupyter Notebook for data science workflows
+EC2 instance with public IP and open security group access on port 22 and 8888 for Jupyter
+
+Storage and Database:
+
+Single EBS drive mounted on the compute notebook instance
+All data and model artifacts saved on the single EBS volume
+Database layer hosted on a db.t3.small RDS postgres database also public and open access
+
+Container Infrastructure:
+
+AWS Fargate used to run occasional ML training containers
+Containers not optimized for resources and destroys after run
+
+CI/CD Pipeline:
+
+No automated pipeline set up
+Manual process to containerize notebooks and run on Fargate when needed
+
+Security:
+
+All public IP access with no IAM controls
+Notebooks left running/open for extended periods
+
+Monitoring and Observability:
+
+No usage metrics collection or monitoring setup
+Manual analysis done adhoc when possible
